@@ -1,47 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+
   <title>Frontend Mentor | Results summary component</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+    :root {
+      /* Primary */
+      --Lightred: hsl(0, 100%, 67%);
+      --Orangey-yellow: hsl(39, 100%, 56%);
+      --Greenteal: hsl(166, 100%, 37%);
+      --Cobalt-blue: hsl(234, 85%, 45%);
+
+      /* Gradients */
+      --Light-slate-blue: hsl(252, 100%, 67%);
+      --Light-royal-blue: hsl(241, 81%, 54%);
+
+      --Violet-blue: hsla(256, 72%, 46%, 1);
+      --Persian-blue: hsla(241, 72%, 46%, 0);
+
+
+
+      /* Neutral */
+      --White: hsl(0, 0%, 100%);
+      --Pale-blue: hsl(221, 100%, 96%);
+      --Light-lavender: hsl(241, 100%, 89%);
+      --Dark-gray-blue: hsl(224, 30%, 27%);
+      --grotesk: 'Hanken Grotesk', sans-serif;
+    }
+
+    body {
+      background-color: var(--White);
+    }
+
+    .container {
+      display: flex;
+      gap: 2rem;
+      width: 800px;
+      font-family: var(--grotesk);
+      margin: 20rem auto;
+      margin-bottom: 5rem;
+      border-radius: 2rem;
+      box-shadow: 0px -14px 33px -45px var(--Light-royal-blue), 12px 8px 33px -32px var(--Light-royal-blue);
+    }
+
+    .result {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 50%;
+      align-items: center;
+      padding: 2rem 3rem;
+      border-radius: 2rem;
+      background-image: linear-gradient(var(--Light-slate-blue), var(--Light-royal-blue) 125%);
+      gap: 1rem;
+    }
+
+    .result__subtitle {
+      font-weight: 700;
+      color: var(--Light-lavender);
+
+    }
+
+    .result__circle {
+      text-align: center;
+      font-size: 20px;
+      color: var(--Light-lavender);
+      background-image: linear-gradient(var(--Light-royal-blue), var(--Light-slate-blue) 150%);
+      padding: 4rem 4.5rem;
+      border-radius: 50%;
+
+    }
+
+    .result__score {
+      color: var(--White);
+      font-size: 72px;
+      line-height: 72px;
+    }
+
+    .result__title {
+      color: var(--White);
+      font-size: 30px;
+      margin: 0;
+
+    }
+
+    .result__description {
+      text-align: center;
+      font-size: 22px;
+      color: var(--Light-lavender);
+      margin: 0;
+    }
+
+    .summary {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 50%;
+      padding: 3rem 0;
+      padding-right: 2rem;
+      gap: 2rem;
+    }
+
+    .summary__title{
+      font-weight: 800;
+      font-size: 30px;
+      font-weight: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .summary__list {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      padding: 0;
+      margin-top: 0;
+      gap: 1.5rem;
+    }
+
+    .list__item {
+      display: flex;
+      flex-direction: column;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .item__container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .item__container-left {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      line-height: 8px;
+      padding-left: 1rem;
+    }
+
+    .item__container-right{
+      padding-right: 1rem;
+      color: gray;
+      font-weight: 800;
+    }
+
+    .score__achieved{
+      color: black;
+      font-weight: 800;
+    }
+
+    .summary__button{
+      border-radius: 2rem;
+      border: none;
+      color: var(--White);
+      font-size: 18px;
+      font-weight: 700;
+      padding: 1rem 0;
+      background-color: hsl(from var(--Dark-gray-blue) h s l /80%);
+    }
+
+
+    .bg-red {
+      background-color: hsl(from var(--Lightred) h s l / 10%);
+    }
+
+    .bg-yellow {
+      background-color: hsl(from var(--Orangey-yellow) h s l / 10%);
+    }
+
+    .bg-green {
+      background-color: hsl(from var(--Greenteal) h s l / 10%);
+    }
+
+    .bg-blue {
+      background-color: hsl(from var(--Cobalt-blue) h s l / 10%);
+    }
+
+    .c-red {
+      color: var(--Lightred);
+    }
+
+    .c-yellow {
+      color: var(--Orangey-yellow);
+    }
+
+    .c-green {
+      color: var(--Greenteal);
+    }
+
+    .c-blue {
+      color: var(--Cobalt-blue);
+    }
+
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
   </style>
 </head>
+
 <body>
 
-  Your Result
-  76
-  of 100
+  <main class="container">
+    <section class="result">
+      <h2 class="result__subtitle">Your Result</h2>
+      <div class="result__circle"><span class="result__score">76</span> </br> of 100</div>
+      <h1 class="result__title">Great</h1>
+      <p class="result__description">You scored higher than 65% of the people who have taken these tests.</p>
+    </section>
+    <section class="summary">
+      <h1 class="summary__title">Summary</h1>
+      <ul class="summary__list">
+        <li class="list__item">
+          <div class="item__container bg-red">
+            <div class="item__container-left">
+              <img src="./assets/images/icon-reaction.svg" alt="" class="item__img">
+              <h3 class="item__name c-red">Reaction</h3>
+            </div>
 
-  Great
-  You scored higher than 65% of the people who have taken these tests.
-  
-  Summary
+            <p class="item__score item__container-right"><span class="score__achieved">80</span> / 100</p>
+          </div>
+        </li>
+        <li class="list__item">
+          <div class="item__container bg-yellow">
+            <div class="item__container-left">
+              <img src="./assets/images/icon-memory.svg" alt="" class="item__img">
+              <h3 class="item__name c-yellow">Memory</h3>
+            </div>
 
-  Reaction
-  80 / 100
+            <p class="item__score item__container-right"><span class="score__achieved">92</span> / 100</p>
+          </div>
+        </li>
+        <li class="list__item">
+          <div class="item__container bg-green">
+            <div class="item__container-left">
+              <img src="./assets/images/icon-verbal.svg" alt="" class="item__img">
+              <h3 class="item__name c-green">Verbal</h3>
+            </div>
 
-  Memory
-  92 / 100
+            <p class="item__score item__container-right"><span class="score__achieved">61</span> / 100</p>
+          </div>
+        </li>
+        <li class="list__item">
+          <div class="item__container bg-blue">
+            <div class="item__container-left">
+              <img src="./assets/images/icon-visual.svg" alt="" class="item__img">
+              <h3 class="item__name c-blue">Visual</h3>
+            </div>
 
-  Verbal
-  61 / 100
+            <p class="item__score item__container-right"><span class="score__achieved">72</span> / 100</p>
+          </div>
+        </li>
+      </ul>
 
-  Visual
-  72 / 100
+      <button class="summary__button">Continue</button>
+    </section>
+  </main>
 
-  Continue
-  
+
+
   <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="#">Your Name Here</a>.
   </div>
 </body>
+
 </html>
